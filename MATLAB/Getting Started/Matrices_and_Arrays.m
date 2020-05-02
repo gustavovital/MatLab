@@ -1,3 +1,5 @@
+clc; clear all
+
 % Criação de arrays
 
  a = [1 2 3 4]
@@ -20,3 +22,31 @@ a + 10
 
 disp('Ou o seno de a:');
 sin(a)
+
+disp('Matriz ransposta');
+a'
+
+disp('identidade');
+p = a*inv(a)
+
+disp('Mudamos o formato com format long ou format short');
+
+disp('');
+disp('Para ultiplicar elemento por elemento, usamos .*');
+
+p = a.*a
+
+disp('para concatenar, basta utilizarmos as chaves');
+disp('Para linhas');
+A = [a, a]
+
+disp('Para colunas');
+[a; a]
+
+disp('Por fim, numeros complexos:');
+
+sqrt(-1)
+
+disp('para repreentar partes imaginarias, use i ou j');
+
+c = [3+4i, 4+3j; -i, 10j]
