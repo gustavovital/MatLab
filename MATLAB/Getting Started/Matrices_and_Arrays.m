@@ -1,5 +1,5 @@
 clc; clear all
-
+slCharacterEncoding('UTF-8');
 % Criação de arrays
 
  a = [1 2 3 4]
