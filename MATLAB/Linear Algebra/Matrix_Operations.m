@@ -23,3 +23,9 @@ X = A + B
 disp('');
 disp('Y = X - A');
 Y = X - A
+
+disp('----------------------------------------------------');
+disp('Produto vetorial e transposta');
+disp('');
+disp('x = v*u');
+x = v*u
