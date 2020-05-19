@@ -29,3 +29,32 @@ disp('Produto vetorial e transposta');
 disp('');
 disp('x = v*u');
 x = v*u
+disp('X = v*u');
+X = u*v
+disp('-----------------------------------------------------');
+disp('Multiplicação de Matrizes');
+A = pascal(3);
+B = magic(3);
+m = 3; n = 3;
+
+for i = 1:m
+    for j = 1:n
+        C(i, j) = A(i, :)*B(:, j);
+    end
+end
+
+C
+
+disp('Matriz Identidade');
+
+eye(5,5)
+
+disp('-----------------------------------------------------');
+disp('Norma e Vetores');
+
+v = [2 0 -1]
+disp('norma de v norm(v)');
+norm(v, 1)
+norm(v)
+norm(v, inf)
+disp('O defaut é norm(v, 2), pois corresponde ao comprimento euclidiano');
