@@ -47,7 +47,7 @@ hold off
 clc,clear
 
 % function
-[X,Y] = meshgrid(-30:.5:30);
+[X,Y] = meshgrid(-10:.5:10);
 z = (X + Y)./(X - Y);
 
 [dx, dy] = gradient(z, .5, .5);
