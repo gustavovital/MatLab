@@ -138,12 +138,14 @@ disp(ySol(x));
 
 % display vector field
 [x, y] = meshgrid(-5:.2:5);
-z = 3*exp(x)*tan(y)/((1-exp(x))*sec(y)^2);
-n(isinf(Z)) = nan; 
+z = 3.*exp(x).*tan(y)./((1-exp(x))*sec(y).^2);
+z(isinf(z)) = nan; 
 [dx, dy] = gradient(z, .2, .2);
 
 figure
 contour(x, y, z, 30, 'k')
 hold on 
-quiver(x, y, dx, dy, 6)
+quiver(x, y, dx, dy, 1)
 hold off
+
+%%

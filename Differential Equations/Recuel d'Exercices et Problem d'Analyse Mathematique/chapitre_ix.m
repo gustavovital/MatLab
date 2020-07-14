@@ -147,3 +147,24 @@ contour(x, y, z, 30, 'k')
 hold on 
 quiver(x, y, dx, dy, 1)
 hold off
+
+%% 2748
+clear; clc;
+
+syms y(x);
+ode = y*diff(y,x) == exp(x) / (1 + exp(x));
+disp(ode);
+cond = y(0) == 1;
+ySol(x) = dsolve(ode, cond);
+disp(ySol(x));
+
+% display vector field
+[x, y] = meshgrid(-10:.2:10);
+z = exp(x) ./ (1 + exp(x)).*y;
+[dx, dy] = gradient(z, .2, .2);
+
+figure
+contour(x, y, z, 30, 'k')
+hold on 
+quiver(x, y, dx, dy, 1)
+hold off
