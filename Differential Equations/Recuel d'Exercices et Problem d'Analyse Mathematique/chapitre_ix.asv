@@ -92,8 +92,8 @@ hold off
 clc,clear
 
 % function
-[X,Y] = meshgrid(-3:.5:3);
-F = @(X,Y) 1 + Y^2;
+[X,Y] = meshgrid(-5:.5:0);
+F = @(X,Y) 1 + Y .^2;
 
 % equation
 [x1,y1] = ode45(F,[-3 3],0);
@@ -101,8 +101,8 @@ F = @(X,Y) 1 + Y^2;
 [x3,y3] = ode45(F,[-3 3],2);
 [x4,y4] = ode45(F,[-3 3],3);
 [x5,y5] = ode45(F,[-3 3],4);
-DX = F(X,1);
-DY = DX*0 + 1;
+DY = F(1,Y);
+DX = DY*0 + 1;
 
 figure
 quiver(X,Y,DX,DY)
@@ -116,4 +116,34 @@ hold on
 plot(x4,y4,'y')
 hold on
 plot(x5,y5,'black')
+hold off
+
+%% 2747
+clear; clc;
+syms y(x)
+
+ode =  diff(y,x) == y/tan(x);
+ySol(x) = dsolve(ode);
+disp(ode);
+disp(ySol(x));
+
+%% 2746
+clear; clc;
+syms y(x);
+
+ode = (1-exp(x))*sec(y)^2 * diff(y) == 3*exp(x)*tan(y);
+disp(ode);
+ySol(x) = dsolve(ode);
+disp(ySol(x));
+
+% display vector field
+[x, y] = meshgrid(-5:.2:5);
+z = 3*exp(x)*tan(y)/((1-exp(x))*sec(y)^2);
+n(isinf(Z)) = nan; 
+[dx, dy] = gradient(z, .2, .2);
+
+figure
+contour(x, y, z, 30, 'k')
+hold on 
+quiver(x, y, dx, dy, 6)
 hold off

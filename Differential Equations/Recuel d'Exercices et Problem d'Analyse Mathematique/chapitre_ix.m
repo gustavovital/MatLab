@@ -117,3 +117,33 @@ plot(x4,y4,'y')
 hold on
 plot(x5,y5,'black')
 hold off
+
+%% 2747
+clear; clc;
+syms y(x)
+
+ode =  diff(y,x) == y/tan(x);
+ySol(x) = dsolve(ode);
+disp(ode);
+disp(ySol(x));
+
+%% 2746
+clear; clc;
+syms y(x);
+
+ode = (1-exp(x))*sec(y)^2 * diff(y) == 3*exp(x)*tan(y);
+disp(ode);
+ySol(x) = dsolve(ode);
+disp(ySol(x));
+
+% display vector field
+[x, y] = meshgrid(-5:.2:5);
+z = 3.*exp(x).*tan(y)./((1-exp(x))*sec(y).^2);
+z(isinf(z)) = nan; 
+[dx, dy] = gradient(z, .2, .2);
+
+figure
+contour(x, y, z, 30, 'k')
+hold on 
+quiver(x, y, dx, dy, 1)
+hold off
