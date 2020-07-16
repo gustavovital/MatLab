@@ -165,3 +165,60 @@ contour(x, y, z, 30, 'k')
 hold on 
 quiver(x, y, dx, dy, 10)
 hold off
+%% 2751
+clear; clc;
+
+syms y(x);
+ode = diff(y,x) == (x + y)^2;
+disp(ode);
+ySol(x) = dsolve(ode);
+disp(ySol(x));
+
+% display vector field
+[x, y] = meshgrid(-1:.1:1);
+z = (x + y).^2;
+[dx, dy] = gradient(z, .1, .1);
+
+figure
+contour(x, y, z, 30, 'k')
+hold on 
+quiver(x, y, dx, dy, 10)
+hold off
+%% 2755
+clear; clc;
+
+syms y(x);
+ode = diff(y,x) == (sqrt(x.^2 + y.^2)-x)./y;
+disp(ode);
+ySol(x) = dsolve(ode);
+disp(ySol(x));
+
+% display vector field
+[x, y] = meshgrid(-0.5:.01:0.5);
+z = (sqrt(x.^2 + y.^2)-x)./y;
+[dx, dy] = gradient(z, .01, .01);
+
+figure
+contour(x, y, z, 30, 'k')
+hold on 
+quiver(x, y, dx, dy, 10)
+hold off
+%% 2756
+clear; clc;
+
+syms y(x);
+ode = diff(y,x) == (x.^2 + y.^2)./x.*y;
+disp(ode);
+ySol(x) = dsolve(ode);
+disp(ySol(x));
+
+% display vector field
+[x, y] = meshgrid(0.5:.1:5);
+z = (x.^2 + y.^2)./(x.*y);
+[dx, dy] = gradient(z, .1, .1);
+
+figure
+contour(x, y, z, 30, 'k')
+hold on 
+quiver(x, y, dx, dy, 10)
+hold off
