@@ -53,7 +53,7 @@ z = (X + Y)./(X - Y);
 [dx, dy] = gradient(z, .5, .5);
 
 figure
-contour(X, Y, z, 30, 'k')
+contour(X, Y, z, 10, 'k')
 hold on 
 quiver(X, Y, dx, dy)
 hold off
@@ -218,7 +218,20 @@ z = (x.^2 + y.^2)./(x.*y);
 [dx, dy] = gradient(z, .1, .1);
 
 figure
-contour(x, y, z, 30, 'k')
+contour(x, y, z, 10, 'k')
 hold on 
 quiver(x, y, dx, dy, 10)
+hold off
+%% example off gradient
+clear; clc;
+
+% display vector field
+[x, y] = meshgrid(-5:.4:5);
+z = -x.^4 + 4*(x.^2 - y.^2) - 3;
+[dx, dy] = gradient(z, .1, .1);
+
+figure
+contour(x, y, z, 100)
+hold on 
+quiver(x, y, dx, dy, 2)
 hold off
