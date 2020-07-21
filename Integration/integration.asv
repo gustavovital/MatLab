@@ -1,3 +1,0 @@
-%% some integrals example
-
-fun01 = @(x) exp(-x.^2).*log(x).^2;
