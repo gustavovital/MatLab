@@ -1,40 +1,42 @@
-function [Table] = LagCriteria(VAR)
+function [Table] = LagCriteria(VAR, iterations)
 
-    
-    % iterations of lags
-    defaultIter = 10;
-       
+    if nargin == 2
+        defaultIter = iterations;
+    else 
+        defaultIter = 10;
+    end
     
     numberOfVar = size(VAR, 2);
-    AIC = [];
-    BIC = [];
-    LogLikelihood = [];
+    AIC = string();
+    BIC = string();
+    Lags = string();
+    
     for i=1:defaultIter
         baselineModel = varm(numberOfVar, i);
         summary = summarize(estimate(baselineModel, VAR));
-        AIC = [AIC; summary.AIC];
-        BIC = [BIC; summary.BIC];
-        LogLikelihood  = [LogLikelihood; summary.LogLikelihood];
+        AIC     = [AIC; string(round(summary.AIC, 2))];
+        BIC     = [BIC; string(round(summary.BIC, 2))];
+        Lags    = [Lags; i]; 
         
     end  
     
-    aicmin = min(AIC);
-    bicmin = min(BIC);
-    llmax  = max(LogLikelihood);
+    aicmin = min(str2double(AIC));
+    bicmin = min(str2double(BIC));
     
-%     for value=1:defaultIter
-%         if AIC(value) == aicmin
-%             AIC(value) = strcat(num2str(AIC(value)), "*");
-%         end
-%         if BIC(value) == bicmin
-%             BIC(value) = strcat(num2str(BIC(value)), "*");
-%         end
-%         if LogLikelihood(value) == llmax
-%             LogLikelihood(value) = strcat(num2str(LogLikelihood(value)), "*");
-%         end
-%     end
-
-    display = table(AIC, BIC, LogLikelihood);
-    disp(display);
+    for value=1:defaultIter
+        if AIC(value) == string(aicmin)
+            AIC(value) = strcat(num2str(AIC(value)), "***");
+        end
+        if BIC(value) == string(bicmin)
+            BIC(value) = strcat(num2str(BIC(value)), "***");
+        end
+    end
+    
+    AIC  = AIC(2:length(AIC));
+	BIC  = BIC(2:length(BIC));
+    Lags = Lags(2:length(Lags));
+    
+    Table = table(Lags, AIC, BIC);
+    
       
 end
