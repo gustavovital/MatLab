@@ -1,4 +1,4 @@
-function [display] = LagCriteria(VAR)
+function [Table] = LagCriteria(VAR)
 
     
     % iterations of lags
@@ -6,14 +6,29 @@ function [display] = LagCriteria(VAR)
        
     
     numberOfVar = size(VAR, 2);
-    
+    AIC = [];
+    BIC = [];
+    LogLikelihood = [];
     for i=1:defaultIter
-        
         baselineModel = varm(numberOfVar, i);
         summary = summarize(estimate(baselineModel, VAR));
-        display = [summary.AIC ;
-        
-        disp(display);
-    end    
+        AIC = [AIC; summary.AIC];
+        BIC = [BIC; summary.BIC];
+        LogLikelihood  = [LogLikelihood; summary.LogLikelihood];
+       
+    end  
     
+    aicMin = min(AIC);
+    bicmin = min(BIC);
+    llMin  = min(LogLikelihood);
+    
+    for value=1:defaultIter
+        if
+            AIC(value) = aicmin
+    end
+
+    
+    display = table(AIC, BIC, LogLikelihood);
+    disp(display);
+      
 end
