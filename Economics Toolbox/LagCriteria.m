@@ -24,11 +24,11 @@ function [Table] = LagCriteria(VAR, iterations)
     bicmin = min(str2double(BIC));
     
     for value=1:defaultIter
-        if AIC(value) == string(aicmin)
-            AIC(value) = strcat(num2str(AIC(value)), "***");
+        if AIC(value) == string(round(aicmin, 2))
+            AIC(value) = strcat(AIC(value), "***");
         end
-        if BIC(value) == string(bicmin)
-            BIC(value) = strcat(num2str(BIC(value)), "***");
+        if BIC(value) == string(round(bicmin, 2))
+            BIC(value) = strcat(BIC(value), "***");
         end
     end
     

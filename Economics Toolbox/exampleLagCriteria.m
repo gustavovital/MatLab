@@ -5,4 +5,4 @@ unrate = DataTable.UNRATE(2:end);
 
 %% Select lag from VAR
 LagCriteria([rcpi unrate], 6)
-LagCriteria([rcpi unrate], 16)
+% LagCriteria([rcpi unrate])
