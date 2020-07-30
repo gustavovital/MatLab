@@ -16,6 +16,7 @@ function [Graph] = ResponseImpulse(Model)
             set(Fill,'facealpha',.15)
             hold on
             plot(0:29, Response(:, i, j), 'LineWidth', 1.5);
+            grid on
             title(strcat(response, " response to ", shock));
             count = count + 1;
         end
