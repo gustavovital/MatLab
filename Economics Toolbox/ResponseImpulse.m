@@ -12,14 +12,13 @@ function [Graph] = ResponseImpulse(Model)
         for j=1:iterations
             response = names(j);
             subplot(iterations, iterations, count);
-%             fill(0:29, [Lower(:,i,j), Upper(:,i,j)])
+            Fill = fill([0:29 fliplr(0:29)], [Upper(:, i, j)', fliplr(Lower(:, i, j)')], 'black');
+            set(Fill,'facealpha',.15)
             hold on
-            plot(0:29, Response(:, i, j));
+            plot(0:29, Response(:, i, j), 'LineWidth', 1.5);
             title(strcat(response, " response to ", shock));
             count = count + 1;
         end
     end
     
-      
-
 end
