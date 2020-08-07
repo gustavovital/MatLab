@@ -36,8 +36,7 @@ disp(Model);
 disp(summarize(Model));
 
 %% IRF
-[response, lower, upper] = irf(Model, "E", E, ...
-    "NumPaths", 500, "Confidence", 0.9);
+[response, lower, upper] = irf(Model, "E", E, "NumPaths", 500, "Confidence", 0.9);
 
 %% organizing series
 
