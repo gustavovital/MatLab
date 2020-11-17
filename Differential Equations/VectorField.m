@@ -10,7 +10,6 @@ F = @(X,Y) Y./6 * (4 - Y);
 DY = F(1,Y);
 DX = DY*0 + 5;
 
-figure
 quiver(X,Y,DX,DY)
 hold on
 plot(x,y,'r')
